@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
     'app',
     'django_extensions'
 ]
@@ -87,7 +86,7 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'final_project',
+#         'NAME': 'BookVerse',
 #         'USER': 'postgres',
 #         'PASSWORD': 'Mushu5763',
 #         'HOST': 'localhost',
@@ -151,7 +150,7 @@ REST_FRAMEWORK = {
     # ],
     
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 
     'DEFAULT_PERMISSION_CLASSES': [
@@ -169,7 +168,7 @@ REST_FRAMEWORK = {
     }
 }
 
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10), 
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
-# }
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+}

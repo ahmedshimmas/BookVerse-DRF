@@ -6,10 +6,11 @@ from app import models
 class UserSerializer(serializers.ModelSerializer):
 
     name = serializers.SerializerMethodField(read_only=True)
+    avg_book_rating = serializers.ReadOnlyField()
     
     class Meta:
         model = models.User
-        fields = ['id', 'name', 'role', 'country', 'bio', 'first_name', 'last_name']
+        fields = ['id', 'name', 'role', 'country', 'bio', 'first_name', 'last_name', 'avg_book_rating']
         extra_kwargs = {
             'first_name': {'write_only': True, 'required': False}, #writeonly allows the fields to not be shown in the response
             'last_name': {'write_only': True, 'required': False}
@@ -20,6 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class BookSerializer(serializers.ModelSerializer):
+    avg_rating = serializers.ReadOnlyField()
     class Meta:
         model = models.Book
         fields = '__all__'
@@ -36,6 +38,12 @@ class BookSerializer(serializers.ModelSerializer):
             for user in instance.owner.all() #handling many to many
         ]
         return data
+    
+    #soft deleting books on destroy action
+    def delete(self, instance):
+        instance.is_deleted = True
+        instance.save()
+        return Response({'message': 'Book deleted successfully.'})
 
 
 class ReviewSerializer(serializers.ModelSerializer):
