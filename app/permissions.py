@@ -9,7 +9,7 @@ class IsUserOwner(BasePermission):
 class IsObjectOwner(BasePermission):
     def has_object_permission(self, request, view, obj):
         user = request.user
-        if hasattr(obj, 'owner'):
+        if hasattr(obj, 'owner'): 
             if isinstance(obj.owner, models.Manager): #isinstance checks whether an object is part of a class of a model manager? e.g. isinstance(5, int) will return True
                 return user in obj.owner.all()
             return obj.owner == user

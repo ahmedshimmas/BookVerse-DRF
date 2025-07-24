@@ -30,7 +30,7 @@ class UserViewset(viewsets.ModelViewSet):
         if self.action in ['create']:
             self.permission_classes = []
         elif self.action in ['update', 'partial_update', 'destroy']:
-            print(self.request.user.id)
+            # print(self.request.user.id)
             self.permission_classes = [IsAuthenticated, permissions.IsUserOwner]
         else:
             self.permission_classes = [IsAuthenticated]

@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django migrations
+app/migrations/
+
+# SQLite database
+*.sqlite3
+
+# Environment variables
+.env
+
+# VSCode settings
+.vscode/
+
+# Docker stuff
+*.log
+*.pid
+*.seed
+*.bak
+*.tmp
+*.swp
+
+# Python virtual environment
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled static files
+staticfiles/
+
+docker-compose.yml
+Dockerfile
